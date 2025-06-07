@@ -45,6 +45,10 @@
     object-fit: cover;
 }
 
+.section-title {
+    color: #003366; /* Dark blue color */
+}
+
 @media (max-width: 1368px) {
     .foto-enggal {
         width: 300px;
@@ -72,14 +76,32 @@
         margin-top: 95px;
     }
 
+    .deskripsi {
+        font-size: 0.9rem;
+    }
+
     .keterangan {
         margin-top: 0;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         margin-bottom: 0px;
         }
+
+    footer p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+
+    .copy {
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
 }
 
 video.object-fit-fill {
     border-radius: 10px;
     overflow: hidden;
+}
+
+footer p {
+    margin-bottom: 0;
 }
