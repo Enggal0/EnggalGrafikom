@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafika Persamaan</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            background-color: #f0f0f0;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const width = canvas.width;
+        const height = canvas.height;
+
+        const scale = 100;
+        const offsetX = width / 2;
+        const offsetY = height / 2;
+
+        for (let x = -5; x <= 5 ; x += 0.01){
+            for (let y = -5; y <= 5 ; y += 0.01){
+                let left = Math.pow(x*x + y*y - 1, 3);
+                let right = Math.pow(x, 2) * Math.pow(y, 3);
+
+                if (Math.abs(left - right) < 0.01) {
+                    let canvasX = offsetX + x * scale;
+                    let canvasY = offsetY - y * scale;
+
+                    ctx.fillStyle = 'red';
+                    ctx.fillRect(canvasX, canvasY, 1, 1);
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

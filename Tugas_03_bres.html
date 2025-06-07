@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritma Lingkaran Bresenham</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Algoritma Lingkaran Bresenham</h2>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    
+    <script>
+        function putpixel(x, y, color) {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, 1, 1);
+        }
+        
+        function circlePlotPoints(x0, y0, x, y){
+            putpixel(x0 + x, y0 + y, "red");
+            putpixel(x0 - x, y0 + y, "blue");
+            putpixel(x0 + x, y0 - y, "green");
+            putpixel(x0 - x, y0 - y, "yellow");
+            putpixel(x0 + y, y0 + x, "purple");
+            putpixel(x0 - y, y0 + x, "orange");
+            putpixel(x0 + y, y0 - x, "pink");
+            putpixel(x0 - y, y0 - x, "cyan");
+        }
+        
+        function circleBres(x0, y0, r){
+            var x = 0;
+            var y = r;
+            var d = 3 - 2 * r;
+            circlePlotPoints(x0, y0, x, y);
+    
+            while(y >= x){
+                if(d > 0){
+                    y--;
+                    d = d + 4 * (x - y) + 10;
+                } else {
+                    d = d + 4 * x + 6;
+                }
+                x++;
+                circlePlotPoints(x0, y0, x, y);
+            }
+        }
+        
+        circleBres(200, 200, 100);
+    </script>
+</body>
+</html>

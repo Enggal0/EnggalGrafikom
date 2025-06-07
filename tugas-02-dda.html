@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritma DDA - Garis</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Algoritma Garis DDA (Digital Differential Analyzer)</h2>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+        function drawLineDDA(x0, y0, x1, y1) {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            let dx = x1 - x0;
+            let dy = y1 - y0;
+
+            let steps = Math.abs(dx) > Math.abs(dy) ? Math.abs(dx) : Math.abs(dy);
+
+            let Xinc = dx / steps;
+            let Yinc = dy / steps;
+
+            let X = x0, Y = y0;
+
+            for (let i = 0; i <= steps; i++) {
+                ctx.fillRect(Math.round(X), Math.round(Y), 2, 2); // Plot pixel
+                X += Xinc;
+                Y += Yinc;
+            }
+        }
+
+        // Contoh menggambar garis dari (100,100) ke (400,300)
+        drawLineDDA(100, 100, 400, 300);
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritma Lingkaran Midpoint</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Algoritma Lingkaran Midpoint</h2>
+    <canvas id="circleCanvas" width="400" height="400"></canvas>
+    <script>
+        function putPixel(x, y, color) {
+            const canvas = document.getElementById('circleCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = color;
+            ctx.fillRect(x + 200, y + 200, 1, 1);
+        }
+
+        function circlePlotPoints(x0, y0, x, y) {
+            putPixel(x0 + x, y0 + y, "red");
+            putPixel(x0 - x, y0 + y, "blue");
+            putPixel(x0 + x, y0 - y, "green");
+            putPixel(x0 - x, y0 - y, "yellow");
+            putPixel(x0 + y, y0 + x, "purple");
+            putPixel(x0 - y, y0 + x, "orange");
+            putPixel(x0 + y, y0 - x, "pink");
+            putPixel(x0 - y, y0 - x, "cyan");
+        }
+
+        function circleMidpoint(x0, y0, radius) {
+            let x = 0;
+            let y = radius;
+            let p = 1 - radius;
+
+            circlePlotPoints(x0, y0, x, y);
+
+            while (x < y) {
+                if (p < 0) {
+                    p += 2 * x + 1;
+                } else {
+                    y--;
+                    p += 2 * (x - y) + 1;
+                }
+                x++;
+                circlePlotPoints(x0, y0, x, y);
+            }
+        }
+
+        circleMidpoint(0, 0, 100);
+    </script>
+</body>
+</html>

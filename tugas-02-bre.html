@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritma Bresenham - Garis</title>
+    <style>
+        canvas {
+            border: 1px solid black; 
+        }
+    </style>
+</head>
+<body>
+    <h2>Algoritma Garis Bresenham</h2>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        function Titik(x, y) {
+            context.fillStyle = 'black';
+            context.fillRect(x, y, 2, 2); // Menggambar titik
+        }
+
+        function GarisBresenham(x1, y1, x2, y2) {
+            var dx = Math.abs(x2 - x1);
+            var dy = Math.abs(y2 - y1);
+            var sx = (x1 < x2) ? 1 : -1;
+            var sy = (y1 < y2) ? 1 : -1;
+            var err = dx - dy;
+
+            while (true) {
+                Titik(x1, y1); // Menggambar titik pada posisi (x1, y1)
+
+                if (x1 === x2 && y1 === y2) break; // Jika sudah sampai ke titik akhir
+                var e2 = 2 * err;
+
+                if (e2 > -dy) {
+                    err -= dy;
+                    x1 += sx;
+                }
+                if (e2 < dx) {
+                    err += dx;
+                    y1 += sy;
+                }
+            }
+        }
+
+        // Contoh menggambar garis dari (100,100) ke (400,300)
+        GarisBresenham(100, 100, 400, 300);
+    </script>
+</body>
+</html>
