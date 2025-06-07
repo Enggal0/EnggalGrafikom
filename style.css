@@ -37,7 +37,11 @@
     margin-bottom: 100px;
     }
 
+    .card {
+    border-radius: 20px;}
 
+    .w-100 {
+    border-radius: 15px; }
 
 .foto-enggal {
     width: 350px;
@@ -58,8 +62,8 @@
 
 @media (max-width: 768px) {
     .foto-enggal {
-        width: 250px;
-        margin-top: 28px;
+        width: 255px;
+        margin-top: 27px;
     }
     
     .hero {
